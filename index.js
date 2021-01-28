@@ -28,6 +28,7 @@ Shape.prototype.move = function () {
 };
 
 Circle.prototype = Object.create(Shape.prototype);
+Circle.prototype.constructor = Circle;
 
 const c = new Circle(10);
 c.draw();
