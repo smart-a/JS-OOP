@@ -5,6 +5,11 @@ function Shape(color) {
   this.color = color;
 }
 
+// Prototype method
+Shape.prototype.move = function () {
+  console.log("move");
+};
+
 // Intermediate function inheritance
 function extend(Parent, Child) {
   // Inherite from Shape object
@@ -41,12 +46,14 @@ function Circle(radius, color) {
   });
 }
 
+extend(Shape, Circle);
+
+// Prototype Method overriding
 // Prototype method
-Shape.prototype.move = function () {
-  console.log("move");
+Circle.prototype.move = function () {
+  console.log("move circle here");
 };
 
-extend(Shape, Circle);
 const c = new Circle(1, "blue");
 c.draw();
 c.move();
