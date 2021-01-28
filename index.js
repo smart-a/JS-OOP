@@ -1,3 +1,5 @@
+function Shape() {}
+
 function Circle(radius) {
   this.radius = radius;
 
@@ -21,10 +23,12 @@ function Circle(radius) {
   });
 }
 
-Circle.prototype.move = function () {
+Shape.prototype.move = function () {
   console.log("move");
 };
 
-const circle = new Circle(10);
-circle.draw();
-circle.move();
+Circle.prototype = Object.create(Shape.prototype);
+
+const c = new Circle(10);
+c.draw();
+c.move();
