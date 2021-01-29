@@ -46,14 +46,49 @@ function Circle(radius, color) {
   });
 }
 
-extend(Shape, Circle);
+function Square() {}
 
+// Circle extend Shape object
+extend(Shape, Circle);
 // Prototype Method overriding
-// Prototype method
 Circle.prototype.move = function () {
   console.log("move circle here");
 };
 
 const c = new Circle(1, "blue");
-c.draw();
 c.move();
+
+// Square extend Shape object
+extend(Shape, Square);
+// Prototype Method overriding
+Square.prototype.move = function () {
+  console.log("move square here");
+};
+
+const sq = new Square();
+sq.move();
+
+// Array of object
+const shapes = [new Circle(), new Square()];
+
+const objs = [
+  {
+    name: "Adesoye",
+    age: 56,
+    do: function () {
+      console.log("My name:", this.name);
+    },
+  },
+  {
+    name: "Abeeb",
+    age: 29,
+    do: function () {
+      console.log("My name:", this.name);
+    },
+  },
+];
+
+// Object itration => Object Polymorphism (Many form)
+for (let shape of shapes) console.log(shape.move());
+// Object itration (Array of object)
+for (let obj of objs) console.log(obj);
