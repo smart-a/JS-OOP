@@ -31,10 +31,6 @@ function Circle(radius, color) {
     return defualtLocation;
   };
 
-  this.draw = function () {
-    console.log("draw");
-  };
-
   // Configure variable with setter and getter
   Object.defineProperty(this, "defaultLocation", {
     get: function () {
@@ -55,18 +51,12 @@ Circle.prototype.move = function () {
   console.log("move circle here");
 };
 
-const c = new Circle(1, "blue");
-c.move();
-
 // Square extend Shape object
 extend(Shape, Square);
 // Prototype Method overriding
 Square.prototype.move = function () {
   console.log("move square here");
 };
-
-const sq = new Square();
-sq.move();
 
 // Array of object
 const shapes = [new Circle(), new Square()];
@@ -92,3 +82,35 @@ const objs = [
 for (let shape of shapes) console.log(shape.move());
 // Object itration (Array of object)
 for (let obj of objs) console.log(obj);
+
+// Object inheritance with attributes
+const canEat = {
+  eat: function () {
+    console.log("Eating...");
+  },
+};
+
+const canWalk = {
+  walk: function () {
+    console.log("Walking...");
+  },
+};
+
+const canSwim = {
+  swim: function () {
+    console.log("Swimming...");
+  },
+};
+
+function Mixin(target, ...sources) {
+  Object.assign(target, ...sources);
+}
+
+function Person() {}
+Mixin(Person, canEat, canWalk, canSwim);
+
+function Fish() {}
+Mixin(Fish, canEat, canSwim);
+
+const person = new Person();
+const fish = new Fish();
