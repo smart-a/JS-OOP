@@ -18,9 +18,34 @@ function HtmlSelectElement(items = []) {
     let index = this.items.indexOf(item);
     this.items.splice(index, 1);
   };
+
+  this.render = function () {
+    return `
+<select>${this.items
+      .map(
+        (item) => ` 
+    <option>${item}<option/>`
+      )
+      .join("")}
+<select/>`;
+  };
 }
-
 HtmlSelectElement.prototype = new HtmlElement();
+HtmlSelectElement.prototype.constructor = HtmlSelectElement;
 
-const h = new HtmlElement();
-const hs = new HtmlSelectElement();
+function HtmlImageElement(src) {
+  this.src = src;
+
+  this.render = function () {
+    return `<img src="${this.src}" />`;
+  };
+}
+HtmlImageElement.prototype = new HtmlElement();
+HtmlImageElement.prototype.constructor = HtmlImageElement;
+
+const elements = [
+  new HtmlSelectElement([1, 2, 3]),
+  new HtmlImageElement("http://"),
+];
+
+for (let obj of elements) console.log(obj.render());
