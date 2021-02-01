@@ -9,6 +9,15 @@ class Circle {
   draw() {
     console.log("draw");
   }
+
+  //Static function
+  static log(value) {
+    console.log(value);
+  }
 }
 
+//Object of a class
 const c = new Circle(2);
+
+//Calling static function
+Circle.log("Circle");
